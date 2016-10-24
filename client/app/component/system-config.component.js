@@ -15,8 +15,8 @@ var systemConfig_service_1 = require('../services/systemConfig.service');
 var systemFiles_service_1 = require('../services/systemFiles.service');
 var system_service_1 = require('../services/system.service');
 var system_1 = require('../entity/system');
-var systemFiles_1 = require('../entity/systemFiles');
-var systemConfig_1 = require('../entity/systemConfig');
+var SystemFiles_1 = require('../entity/SystemFiles');
+var SystemConfig_1 = require('../entity/SystemConfig');
 var SystemConfigComponent = (function () {
     function SystemConfigComponent(router, systemConfigService, systemFileService, systemService, route) {
         this.router = router;
@@ -27,8 +27,8 @@ var SystemConfigComponent = (function () {
         this.close = new core_1.EventEmitter();
         this.systemConfigs = [];
         this.system = new system_1.System('', '');
-        this.systemFile = new systemFiles_1.SystemFile('', '', '');
-        this.systemConfig = new systemConfig_1.SystemConfig(1, '', '', '', '', '', 1);
+        this.systemFile = new SystemFiles_1.SystemFile('', '', '');
+        this.systemConfig = new SystemConfig_1.SystemConfig(1, '', '', '', '', '', 1);
         this.devChecked = 'yes';
         this.qaChecked = 'yes';
         this.prodChecked = 'yes';
@@ -101,7 +101,7 @@ var SystemConfigComponent = (function () {
     };
     //新增一行
     SystemConfigComponent.prototype.addNewColumn = function () {
-        this.systemConfigs.push(new systemConfig_1.SystemConfig(this.system.id, '', '', '', '', '', 0));
+        this.systemConfigs.push(new SystemConfig_1.SystemConfig(this.system.id, '', '', '', '', '', 0));
     };
     //保存所有列表
     SystemConfigComponent.prototype.saveList = function () {

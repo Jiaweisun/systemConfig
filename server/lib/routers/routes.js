@@ -1,4 +1,3 @@
-let UserPage = require('../pages/userPage.js')
 let SystemPage = require('../pages/SystemPage.js')
 let SystemConfigPage = require('../pages/SystemConfigPage.js')
 let ThirdPage = require('../pages/thirdPage.js')

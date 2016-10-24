@@ -1,4 +1,4 @@
-const connect = require('../config/db.js');
+const connect = require('../../resources/db.js');
 
 module.exports = {
 

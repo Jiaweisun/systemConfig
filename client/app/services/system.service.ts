@@ -13,9 +13,9 @@ import 'rxjs/add/operator/catch';
 export class SystemService {
      
      constructor (private http: Http) {}
-     private listUrl = "http://localhost:3200/system/list";
-     private getUrl = "http://localhost:3200/system/get";
-     private addUrl = "http://localhost:3200/system/add";
+     private listUrl = "/system/list";
+     private getUrl = "/system/get";
+     private addUrl = "/system/add";
 
      listSystem() : Observable<System[]>{        
          return this.http.get(this.listUrl)                       

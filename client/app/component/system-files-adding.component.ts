@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Rx';
 
 import { SystemService} from '../services/system.service';
 import { System } from '../entity/system';
-import { SystemFile } from '../entity/systemFiles';
+import { SystemFile } from '../entity/SystemFiles';
 import {SystemFilesService} from '../services/systemFiles.service';
 
 
@@ -56,7 +56,7 @@ export class SystemFilesAddingComponent implements OnInit {
         subscribe(
           systemFiles=>{
             this.systemFile= systemFiles[0]; 
-            console.log('systemFile: '+this.systemFile);       
+            // console.log('systemFile: '+this.systemFile);       
           },err => { console.log(err); this.router.navigate(['/files/'+this.id]);}
           ,()=>console.log(' file none'));     
   }

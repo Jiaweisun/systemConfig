@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var router_2 = require('@angular/router');
-var systemFiles_1 = require('../entity/systemFiles');
+var SystemFiles_1 = require('../entity/SystemFiles');
 var systemFiles_service_1 = require('../services/systemFiles.service');
 var SystemFilesAddingComponent = (function () {
     function SystemFilesAddingComponent(router, systemFileService, route) {
@@ -23,7 +23,7 @@ var SystemFilesAddingComponent = (function () {
     }
     SystemFilesAddingComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.systemFile = new systemFiles_1.SystemFile('', '', '');
+        this.systemFile = new SystemFiles_1.SystemFile('', '', '');
         this.sub = this.route.params.subscribe(function (params) {
             if (params['id'] !== undefined) {
                 _this.id = +params['id'];
@@ -50,7 +50,7 @@ var SystemFilesAddingComponent = (function () {
         this.systemFileService.addSystemFile(systemFile, this.id).
             subscribe(function (systemFiles) {
             _this.systemFile = systemFiles[0];
-            console.log('systemFile: ' + _this.systemFile);
+            // console.log('systemFile: '+this.systemFile);       
         }, function (err) { console.log(err); _this.router.navigate(['/files/' + _this.id]); }, function () { return console.log(' file none'); });
     };
     SystemFilesAddingComponent.prototype.cancel = function () {
@@ -59,7 +59,7 @@ var SystemFilesAddingComponent = (function () {
     };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', systemFiles_1.SystemFile)
+        __metadata('design:type', SystemFiles_1.SystemFile)
     ], SystemFilesAddingComponent.prototype, "systemFile", void 0);
     __decorate([
         core_1.Output(), 

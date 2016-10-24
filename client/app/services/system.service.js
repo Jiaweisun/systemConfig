@@ -19,9 +19,9 @@ require('rxjs/add/operator/catch');
 var SystemService = (function () {
     function SystemService(http) {
         this.http = http;
-        this.listUrl = "http://localhost:3200/system/list";
-        this.getUrl = "http://localhost:3200/system/get";
-        this.addUrl = "http://localhost:3200/system/add";
+        this.listUrl = "/system/list";
+        this.getUrl = "/system/get";
+        this.addUrl = "/system/add";
     }
     SystemService.prototype.listSystem = function () {
         return this.http.get(this.listUrl)

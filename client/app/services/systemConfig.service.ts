@@ -13,14 +13,14 @@ import 'rxjs/add/operator/catch';
 export class SystemConfigService {
      // Resolve HTTP using the constructor
      constructor (private http: Http) {}
-     private listUrl = "http://localhost:3200/systemConfig/list";
-     private getUrl = "http://localhost:3200/systemConfig/get";
-     private addUrl = "http://localhost:3200/systemConfig/add";
-     private getBysfUrl = "http://localhost:3200/systemConfig/getBySFId";
-     private getBySysIdUrl = "http://localhost:3200/systemConfig/getBySysId";
-     private getFileBySysIdUrl = "http://localhost:3200/systemConfig/getFileBySysId";
-     private deleteUrl ="http://localhost:3200/systemConfig/delete";
-     private updateUrl = "http://localhost:3200/systemConfig/update";
+     private listUrl = "/systemConfig/list";
+     private getUrl = "/systemConfig/get";
+     private addUrl = "/systemConfig/add";
+     private getBysfUrl = "/systemConfig/getBySFId";
+     private getBySysIdUrl = "/systemConfig/getBySysId";
+     private getFileBySysIdUrl = "/systemConfig/getFileBySysId";
+     private deleteUrl ="/systemConfig/delete";
+     private updateUrl = "/systemConfig/update";
 
      listSystemConfig() : Observable<SystemConfig[]>{
          // ...using get request

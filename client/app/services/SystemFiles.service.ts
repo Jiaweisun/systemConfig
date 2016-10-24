@@ -11,12 +11,12 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class SystemFilesService {     
      constructor (private http: Http) {}
-     private listUrl = "http://localhost:3200/systemFiles/list";
-     private getUrl = "http://localhost:3200/systemFiles/getById";
-     private getBysidUrl = "http://localhost:3200/systemFiles/getFileBysId";
-     private addUrl = "http://localhost:3200/systemFiles/add";   
-     private deleteUrl ="http://localhost:3200/systemFiles/delete";
-     private updateUrl = "http://localhost:3200/systemFiles/update";
+     private listUrl = "/systemFiles/list";
+     private getUrl = "/systemFiles/getById";
+     private getBysidUrl = "/systemFiles/getFileBysId";
+     private addUrl = "/systemFiles/add";   
+     private deleteUrl ="/systemFiles/delete";
+     private updateUrl = "/systemFiles/update";
 
      listSystemFile() : Observable<SystemFile[]>{        
          return this.http.get(this.listUrl)                        

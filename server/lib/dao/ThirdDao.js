@@ -1,4 +1,4 @@
-const connect = require('../config/db.js');
+const connect = require('../../resources/db.js');
 let systemApi = require('../dao/SystemDao.js');
 let fileApi = require('../dao/SystemFilesDao.js');
 let fileConfigApi = require('../dao/SystemConfigDao.js');

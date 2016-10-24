@@ -32,15 +32,4 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 exports.AppComponent = AppComponent;
-// <h2><img src='app/images/logo-header.png'/></h2>
-//   <router-outlet></router-outlet>
-// <img src='app/images/logo-header.png'/> {{title}}
-// <nav>
-//    <a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
-//    <a [routerLink]="['/heroes']" routerLinkActive="active">Heroes</a>
-//    <a [routerLink]="['/cal']" routerLinkActive="active">Calculator</a>
-//    <a [routerLink]="['/users']" routerLinkActive="active">Users</a>
-//    <a [routerLink]="['/country']" routerLinkActive="active">Country</a>
-//    <a [routerLink]="['/contact']" routerLinkActive="active">Contact us</a>
-//    </nav> 
 //# sourceMappingURL=app.component.js.map

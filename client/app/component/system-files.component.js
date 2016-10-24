@@ -15,7 +15,7 @@ var systemConfig_service_1 = require('../services/systemConfig.service');
 var systemFiles_service_1 = require('../services/systemFiles.service');
 var system_service_1 = require('../services/system.service');
 var system_1 = require('../entity/system');
-var systemFiles_1 = require('../entity/systemFiles');
+var SystemFiles_1 = require('../entity/SystemFiles');
 var SystemFileComponent = (function () {
     function SystemFileComponent(router, systemFileService, systemConfigService, systemService, route) {
         this.router = router;
@@ -26,7 +26,7 @@ var SystemFileComponent = (function () {
         this.close = new core_1.EventEmitter();
         this.system = new system_1.System('', '');
         this.systemFiles = [];
-        this.systemFile = new systemFiles_1.SystemFile('', '', '');
+        this.systemFile = new SystemFiles_1.SystemFile('', '', '');
         this.navigated = false;
         this.title = "----文件配置列表";
     }

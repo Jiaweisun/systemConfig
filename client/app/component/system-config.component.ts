@@ -6,8 +6,8 @@ import {SystemConfigService} from '../services/systemConfig.service';
 import {SystemFilesService} from '../services/systemFiles.service';
 import { SystemService} from '../services/system.service';
 import { System } from '../entity/system';
-import { SystemFile } from '../entity/systemFiles';
-import { SystemConfig} from '../entity/systemConfig';
+import { SystemFile } from '../entity/SystemFiles';
+import { SystemConfig} from '../entity/SystemConfig';
 
 @Component({
   selector: 'system-config',
