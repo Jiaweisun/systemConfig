@@ -1,9 +1,12 @@
+## the node version is v6.3.0.
+
 ### STEPS:
 
 ### 1. to start server
 
 cd server
 npm install
+npm install felixge/node-mysql
 node index
 
 ### 2. to start client
