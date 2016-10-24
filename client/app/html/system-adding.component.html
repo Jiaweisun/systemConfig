@@ -1,0 +1,23 @@
+<div class="sys-add-body">
+	<h3> 新增系统 </h3>
+<!-- <button (click)="goBack()">Back</button> -->
+	<div class="message" *ngIf="system.title===''||system.name===''">请输入系统名称与系统英文名称！</div>
+	<div class="add-form">
+	  <div class="add-line-ht">
+	    <div class="sys-adbody-notice">系统名称：
+	    </div> 
+	    <input [(ngModel)]="system.title" placeholder="系统名称" />
+	  </div>
+
+	  <div class="add-line-ht">
+	  	<div class="sys-adbody-notice">系统英文名称：</div> 
+	    <input [(ngModel)]="system.name" placeholder="系统英文名称" />
+	  </div>
+
+
+	  <div class="add-ul-btn">
+	  	<button (click)="save()">保存</button> &ensp;&ensp;&ensp;  <button (click)="cancel()">取消</button>
+	  </div>
+	  
+	</div>
+</div>

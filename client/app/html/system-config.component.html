@@ -1,0 +1,70 @@
+
+<!-- <h3> <button (click)="goBack()">Back</button>... 系统详情页面 ...</h3> -->
+
+<div *ngIf="systemConfig!=null" class="todos">
+
+
+  <div class="header"> 
+    <h2 style="display: inline-block"> {{system.title}} ---- {{systemFile.name}} </h2>
+  </div>
+
+  <div class="twoBtn"> 
+    <button class="button-index pure-button ml-0" (click)="backToIndex()">返回首页</button>
+    <button class="button-index pure-button" (click)="goBack(systemFile)">返回上一页</button>
+    <button class="button-adding pure-button config-add" (click)="addNewColumn()">新增配置项</button>
+  </div>
+
+
+ <div class="checkboxGroup">
+    <label>
+      <input type="checkbox" class="checkbox" [(ngModel)]="devChecked" name="checks"  ng-true-value="yes" />
+      显示Dev环境
+    </label>
+    <label class="qalabel">
+      <input type="checkbox" class="checkbox" [(ngModel)]="qaChecked" name="checks" ng-true-value="yes"/>
+      显示QA环境
+    </label>
+    <label class="prodlabel">
+      <input type="checkbox" class="checkbox" [(ngModel)]="prodChecked" name="checks" ng-true-value="yes"/>
+      显示Product环境
+    </label>
+    <!--  <div class="message" *ngIf="systemConfig.name===''||systemConfig.key_name===''||systemConfig.dev_value===''||systemConfig.qa_value===''||systemConfig.prod_value===''">请输配置信息！</div> -->
+  </div>
+
+
+<div *ngIf = "systemConfigs">
+  <table >
+    <th> <label>配置项名称</label></th> 
+    <th><label>配置项</label></th>
+    <th><label *ngIf="devChecked">Dev环境</label></th>
+    <th><label *ngIf="qaChecked">QA环境</label></th>
+    <th><label *ngIf="prodChecked">Product环境</label></th>
+    <th><label>操作</label></th>
+
+    <tr *ngFor="let systemConfig of systemConfigs">
+      <td>
+        <input class="add-input" placeholder="name" type="text" [(ngModel)]="systemConfig.name" ng-model-instant/>
+      </td>
+      <td>
+        <input id="key_name" class="add-input" required minlength="2" maxlength="10" placeholder="key" type="text" [(ngModel)]="systemConfig.key_name" ng-model-instant/>
+        
+      </td>
+      <td>
+        <input class="add-input" *ngIf="devChecked" placeholder="dev_value" type="text" [(ngModel)]="systemConfig.dev_value" ng-model-instant />
+      </td>
+      <td>
+         <input class="add-input" *ngIf="qaChecked" placeholder="qa_value" type="text" [(ngModel)]="systemConfig.qa_value" ng-model-instant />
+      </td>
+      <td>
+         <input class="add-input" *ngIf="prodChecked" placeholder="product_value" type="text" [(ngModel)]="systemConfig.prod_value" ng-model-instant />
+      </td>
+      <td>
+         <button (click)="deleteCurrent(systemConfig, $event)">删除</button>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+  <button class="button-save pure-button" (click)="saveList()">保存配置项</button>
+</div>

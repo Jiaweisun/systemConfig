@@ -1,0 +1,23 @@
+<div class="sys-add-body">
+  <h3> 新增系统文件 </h3>
+<!-- <button (click)="goBack()">Back</button> -->
+  <div class="message" *ngIf="systemFile.name===''||systemFile.type===''">请输入文件名称与文件类型！</div>
+  <div class="add-form">
+    <div class="add-line-ht">
+      <div class="sys-adbody-notice">文件名称：</div> 
+      <input [(ngModel)]="systemFile.name" placeholder="文件名称" />
+    </div>
+
+    <div class="add-line-ht">
+      <div class="sys-adbody-notice">文件类型：</div> 
+      <select name="systemFile.type" [(ngModel)]="systemFile.type" ui-select2="vm.typeOpt" name="status" ng-model="vm.status_selected">
+        <option value="propertites" [ngValue]="propertites" selected>propertites</option>
+        <option value="text/xml" [ngValue]="text/xml">text/xml</option>
+      </select>
+    </div>
+    <div class="add-ul-btn">
+      <button (click)="save(systemFile)">保存</button> &ensp;&ensp;&ensp;  <button (click)="cancel()">取消</button>
+    </div>
+    
+  </div>
+</div>
