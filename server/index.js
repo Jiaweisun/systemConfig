@@ -8,7 +8,7 @@ let Routers = require('./lib/routers/routes.js')
 
 
 const server = new Hapi.Server();
-server.connection({ port: 8080});
+server.connection({ port: 3200});
 
 // server.auth.strategy('simple', 'basic', { validateFunc: validate });
 server.route(Routers.routers );

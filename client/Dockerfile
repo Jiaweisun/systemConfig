@@ -8,4 +8,4 @@ COPY client /data/$KS_PROJECT_NAME/
 RUN cd /data/$KS_PROJECT_NAME/ && cnpm install
 EXPOSE 80
 WORKDIR /data/$KS_PROJECT_NAME
-CMD ["npm","run","pro"]
+CMD ["npm","start"]

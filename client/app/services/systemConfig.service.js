@@ -20,14 +20,14 @@ var SystemConfigService = (function () {
     // Resolve HTTP using the constructor
     function SystemConfigService(http) {
         this.http = http;
-        this.listUrl = "/systemConfig/list";
-        this.getUrl = "/systemConfig/get";
-        this.addUrl = "/systemConfig/add";
-        this.getBysfUrl = "/systemConfig/getBySFId";
-        this.getBySysIdUrl = "/systemConfig/getBySysId";
-        this.getFileBySysIdUrl = "/systemConfig/getFileBySysId";
-        this.deleteUrl = "/systemConfig/delete";
-        this.updateUrl = "/systemConfig/update";
+        this.listUrl = "http://localhost:3200/systemConfig/list";
+        this.getUrl = "http://localhost:3200/systemConfig/get";
+        this.addUrl = "http://localhost:3200/systemConfig/add";
+        this.getBysfUrl = "http://localhost:3200/systemConfig/getBySFId";
+        this.getBySysIdUrl = "http://localhost:3200/systemConfig/getBySysId";
+        this.getFileBySysIdUrl = "http://localhost:3200/systemConfig/getFileBySysId";
+        this.deleteUrl = "http://localhost:3200/systemConfig/delete";
+        this.updateUrl = "http://localhost:3200/systemConfig/update";
     }
     SystemConfigService.prototype.listSystemConfig = function () {
         // ...using get request

@@ -18,7 +18,6 @@ const routes: RouterConfig = [
 },
 {
   path: 'dashboard',
-
   component: DashboardComponent
 },
 {
@@ -35,7 +34,6 @@ const routes: RouterConfig = [
 },
 {
   path: 'files/:id',
-
   component: SystemFileComponent
 },
 {

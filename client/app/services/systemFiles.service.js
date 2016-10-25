@@ -18,12 +18,12 @@ require('rxjs/add/operator/catch');
 var SystemFilesService = (function () {
     function SystemFilesService(http) {
         this.http = http;
-        this.listUrl = "/systemFiles/list";
-        this.getUrl = "/systemFiles/getById";
-        this.getBysidUrl = "/systemFiles/getFileBysId";
-        this.addUrl = "/systemFiles/add";
-        this.deleteUrl = "/systemFiles/delete";
-        this.updateUrl = "/systemFiles/update";
+        this.listUrl = "http://localhost:3200/systemFiles/list";
+        this.getUrl = "http://localhost:3200/systemFiles/getById";
+        this.getBysidUrl = "http://localhost:3200/systemFiles/getFileBysId";
+        this.addUrl = "http://localhost:3200/systemFiles/add";
+        this.deleteUrl = "http://localhost:3200/systemFiles/delete";
+        this.updateUrl = "http://localhost:3200/systemFiles/update";
     }
     SystemFilesService.prototype.listSystemFile = function () {
         return this.http.get(this.listUrl)
