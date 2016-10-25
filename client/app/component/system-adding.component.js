@@ -72,4 +72,3 @@ var SystemAddingComponent = (function () {
     return SystemAddingComponent;
 }());
 exports.SystemAddingComponent = SystemAddingComponent;
-//# sourceMappingURL=system-adding.component.js.map

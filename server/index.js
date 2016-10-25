@@ -18,8 +18,8 @@ const options = {
 		'title' : 'Test api Documentation',
 		'version': '1.0',
 		'contact': {
-                'name': 'Aoife Sun',
-                'email': 'sjw@kashuo.com'
+                'name': 'Jiaweisun Sun',
+                'email': 'sunjiawei8930@163.com'
             }
 	}
 };

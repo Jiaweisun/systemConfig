@@ -100,4 +100,3 @@ var SystemXmlConfigComponent = (function () {
     return SystemXmlConfigComponent;
 }());
 exports.SystemXmlConfigComponent = SystemXmlConfigComponent;
-//# sourceMappingURL=system-config-xml.component.js.map

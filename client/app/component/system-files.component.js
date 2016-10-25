@@ -107,4 +107,3 @@ var SystemFileComponent = (function () {
     return SystemFileComponent;
 }());
 exports.SystemFileComponent = SystemFileComponent;
-//# sourceMappingURL=system-files.component.js.map

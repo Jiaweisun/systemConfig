@@ -83,4 +83,3 @@ var SystemConfigService = (function () {
     return SystemConfigService;
 }());
 exports.SystemConfigService = SystemConfigService;
-//# sourceMappingURL=systemConfig.service.js.map

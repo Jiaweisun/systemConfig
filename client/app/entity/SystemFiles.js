@@ -8,4 +8,3 @@ var SystemFile = (function () {
     return SystemFile;
 }());
 exports.SystemFile = SystemFile;
-//# sourceMappingURL=SystemFiles.js.map

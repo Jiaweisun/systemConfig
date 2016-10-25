@@ -7,4 +7,3 @@ var System = (function () {
     return System;
 }());
 exports.System = System;
-//# sourceMappingURL=system.js.map

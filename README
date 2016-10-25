@@ -4,11 +4,12 @@
 
 cd server
 npm install
+npm install felixge/node-mysql
 node index
 
 ### 2. to start client
 
 cd client
 npm install
-npm start
+npm run pro
 

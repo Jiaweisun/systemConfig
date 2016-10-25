@@ -12,4 +12,3 @@ var SystemConfig = (function () {
     return SystemConfig;
 }());
 exports.SystemConfig = SystemConfig;
-//# sourceMappingURL=SystemConfig.js.map
