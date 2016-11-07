@@ -35,7 +35,7 @@ module.exports = {
 	},
 	getFilesBySysId: function(req, res) {
 
-		const sql = "select * from system_file where id in( select file_id from system_cfg where ? ) ";	;
+		const sql = "select * from system_file where ? ";
 		const post = {system_id: req.params.system_id};
 
 		connect.query(sql,post,  function(err,rows) {
@@ -57,29 +57,24 @@ module.exports = {
 		const post = {					
 					name: req.payload.name,
 					type: req.payload.type,
-					content: req.payload.content
+					content: req.payload.content,
+					system_id: req.payload.system_id
 					};
-		const sql = "insert into system_file SET ?";
-		const config_sql = "INSERT into system_cfg (system_id,file_id) VALUES("+req.payload.system_id+",(select id from system_file where name = '"+post.name+"'));";
-		
 
+		const sql = "insert into system_file SET ?";
 		connect.query(sql,post, function(err, rows) {
-	 		if (err) { throw err;}	  		
+	 		if (err) { throw err;}	
+	 		res("add file success");  		
 		});
-		connect.query(config_sql, function(err, rows) {
+
+		if (post.type == "propertites") {
+			const config_sql = "INSERT into system_cfg (system_id,file_id) VALUES("+req.payload.system_id+",(select id from system_file where name = '"+post.name+"'));";
+			connect.query(config_sql, function(err, rows) {
 	 		if (err) { throw err;}
 	  		res("add file config success");
-		});
-	},
-
-	delete : function(req, res) {
-		const sql = "delete from system_file where ?";
-		const post = {id: req.params.id};
-
-		connect.query(sql,post, function(err, rows) {
-	 		if (err) { throw err;}
-	  		res("delete success");
-		});
+			});
+		}	
+		
 	},
 
 	update: function(req, res) {
@@ -94,5 +89,36 @@ module.exports = {
 			if (err) { throw err;}
 	  		res(rows);
 		});
-	}
+	},
+
+	delete : function(req, res) {
+		const sql = "delete from system_file where ?";
+		const post = {id: req.params.id};
+
+		connect.query(sql,post, function(err, rows) {
+	 		if (err) { throw err;}
+	  		res("delete success");
+		});
+	},
+
+	deleteFile : function(req, res) {
+		const sql = "delete cfg, f from system_cfg cfg ,system_file f where cfg.file_id=f.id and f.id="+req.params.id;
+		// const post = {id: req.params.id}; ,post
+
+		connect.query(sql, function(err, rows) {
+	 		if (err) { throw err;}
+	  		res("delete properties success");
+		});
+	},
+
+	deleteBySysId : function(req, res) {
+		const sql = "delete from system_file where ?";
+		const post = {system_id: req.params.id};
+
+		connect.query(sql,post, function(err, rows) {
+	 		if (err) { throw err;}
+	  		res("delete file success");
+		});
+	},
+
 }

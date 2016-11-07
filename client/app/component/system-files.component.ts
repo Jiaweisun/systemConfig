@@ -89,10 +89,28 @@ export class SystemFileComponent implements OnInit, OnDestroy {
     if(systemFile.type == "xml"||systemFile.type == "text/xml") {
       link = ['/xml/'+system.id+'/'+systemFile.id];
     }
-    if(systemFile.type == "propertites") {
+    if(systemFile.type == "properties"||systemFile.type == "propertites") {
       link = ['/config/'+system.id+"/"+systemFile.id];
     }      
     this.router.navigate(link);  
+  }
+
+  deleteCurrent(system:System, systemFile:SystemFile) {
+     console.log('fid:'+systemFile.id+", type: "+systemFile.type);
+    if(systemFile.type == "xml"||systemFile.type == "text/xml") {     
+     //delete file 
+     this.systemFileService.deleteSystemFile(systemFile.id).subscribe(
+       systemFiles => {if(systemFiles.length==1){this.systemFile = systemFiles[0]}}
+                   , err=>{console.log(err)}
+                    ,()=>console.log(' none'));
+    }
+    if(systemFile.type == "properties" || systemFile.type == "propertites") {
+      this.systemFileService.deletePropertiesFile(systemFile.id).subscribe(
+       systemFiles => {if(systemFiles.length==1){this.systemFile = systemFiles[0]}}
+                   , err=>{console.log(err)}
+                    ,()=>console.log(' none'));
+    }   
+    this.systemFiles.length--;
   }
 
 }

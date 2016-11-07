@@ -1,34 +1,22 @@
-<!-- <body> -->
+
 
 <!--title -->
 <div> <h3 style="display: inline-block">配置系统 </h3><button class="button-adding pure-button" (click)="addSystem()">新增系统</button></div>
 
 <!--table -->
 <table *ngIf = "systems">
-  <th>系统</th><th>name</th>
+  <th>系统</th><th>name</th><th><label>操作</label></th>
 
   <tr *ngFor="let system of systems">
     <td> 
       <a href="{{fileUrl}}/{{system.id}}">{{system.title}}</a>
      </td>
     <td>{{system.name}}</td>
+    <td>
+      <button (click)="deleteCurrent(system.id)">删除</button>
+    </td>
   </tr>
 </table>
-
-<!-- </body> -->
-
-
-<!--dropbox -->
-<!--  <form #f="ngForm"><label>state: </label>
-      <select name="state" ngModel>
-        <option value="" disabled>Choose a state</option>
-        <option *ngFor="let state of states" [ngValue]="state">
-          {{ state.abbrev }}
-        </option>
-      </select>
-    </form>
-
-    <div>
-      <label> result:</label>
-       <p> {{ f.value}}</p>
-    </div> -->
+<!-- 
+class="btn btn-default" mwlConfirm [title]="title" [message]="message" placement="left"
+      (confirm) ="confirmClicked = true" (cancel)="cancelClicked = true" [(isOpen)]="isOpen" -->

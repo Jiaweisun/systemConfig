@@ -28,7 +28,7 @@
       <input type="checkbox" class="checkbox" [(ngModel)]="prodChecked" name="checks" ng-true-value="yes"/>
       显示Product环境
     </label>
-    <!--  <div class="message" *ngIf="systemConfig.name===''||systemConfig.key_name===''||systemConfig.dev_value===''||systemConfig.qa_value===''||systemConfig.prod_value===''">请输配置信息！</div> -->
+  
   </div>
 
 
@@ -36,9 +36,9 @@
   <table >
     <th> <label>配置项名称</label></th> 
     <th><label>配置项</label></th>
-    <th><label *ngIf="devChecked">Dev环境</label></th>
-    <th><label *ngIf="qaChecked">QA环境</label></th>
-    <th><label *ngIf="prodChecked">Product环境</label></th>
+    <th><label *ngIf="devChecked">Dev环境   <button (click)="devDetail()">查看</button></label> </th>
+    <th><label *ngIf="qaChecked">QA环境 <button (click)="qaDetail()">查看</button></label></th>
+    <th><label *ngIf="prodChecked">Product环境 <a href="">查看</a></label></th>
     <th><label>操作</label></th>
 
     <tr *ngFor="let systemConfig of systemConfigs">
@@ -46,7 +46,7 @@
         <input class="add-input" placeholder="name" type="text" [(ngModel)]="systemConfig.name" ng-model-instant/>
       </td>
       <td>
-        <input id="key_name" class="add-input" required minlength="2" maxlength="10" placeholder="key" type="text" [(ngModel)]="systemConfig.key_name" ng-model-instant/>
+        <input id="key_name" class="add-input" required placeholder="key" type="text" [(ngModel)]="systemConfig.key_name" ng-model-instant/>
         
       </td>
       <td>

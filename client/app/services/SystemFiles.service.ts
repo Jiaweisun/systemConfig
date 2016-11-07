@@ -16,6 +16,7 @@ export class SystemFilesService {
      private getBysidUrl = "http://localhost:3200/systemFiles/getFileBysId";
      private addUrl = "http://localhost:3200/systemFiles/add";   
      private deleteUrl ="http://localhost:3200/systemFiles/delete";
+     private deletePFUrl ="http://localhost:3200/systemFiles/deleteFile";
      private updateUrl = "http://localhost:3200/systemFiles/update";
 
      listSystemFile() : Observable<SystemFile[]>{        
@@ -53,8 +54,14 @@ export class SystemFilesService {
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
       }
 
-      deleteSystemFIle(id: number): Observable<SystemFile[]>{
+      deleteSystemFile(id: number): Observable<SystemFile[]>{
          return this.http.delete(`${this.deleteUrl}/${id}`)
+                         .map((res:Response) => res.json()) 
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
+      }
+
+      deletePropertiesFile(id: number): Observable<SystemFile[]>{
+         return this.http.delete(`${this.deletePFUrl}/${id}`)
                          .map((res:Response) => res.json()) 
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
       }
@@ -64,14 +71,15 @@ export class SystemFilesService {
         let bodyString = JSON.stringify(body);         
         let headers = new Headers({ 'Content-Type': 'application/json' }); 
         let options = new RequestOptions({ headers: headers }); 
-          var newBody='';
+          var newBody='';          
           if(bodyString!= "" && bodyString != null) {          
-            var bodyArray = bodyString.split(',');
-            let bs=bodyArray[0]+','+bodyArray[3]         
+            var bodyArray = bodyString.split(',');           
+            let bs=bodyArray[0]+','+bodyArray[3]+'}';                 
            newBody = JSON.parse(bs); 
           }            
         return this.http.post(this.updateUrl, newBody, options) 
                          .map((res:Response) => res.json()) 
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
       }
+
 }

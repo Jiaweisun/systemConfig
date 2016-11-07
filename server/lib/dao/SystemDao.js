@@ -1,5 +1,8 @@
 const connect = require('../../resources/db.js');
 
+let fileApi = require('../dao/SystemFilesDao.js');
+let fileConfigApi = require('../dao/SystemConfigDao.js');
+
 module.exports = {
 
 	get: function(req, res) {
@@ -45,4 +48,21 @@ module.exports = {
 	  		res("add success");
 		});
 	},
+
+	delete : function(req, res) {
+
+		fileConfigApi.deleteBySysId(req,reply=>{			
+			fileApi.deleteBySysId(req, rep=>{				
+					const sql = "delete from system where ?";
+					const post = {
+						id: req.params.id
+					};
+					connect.query(sql,post, function(err, rows) {
+						if (err) { throw err;}
+						res('delete success');
+					})
+			})
+		});
+	
+	}
 }

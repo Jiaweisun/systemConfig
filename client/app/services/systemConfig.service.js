@@ -16,6 +16,7 @@ var Rx_1 = require('rxjs/Rx');
 // Import RxJs required methods
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
+require('rxjs/add/operator/toPromise');
 var SystemConfigService = (function () {
     // Resolve HTTP using the constructor
     function SystemConfigService(http) {
@@ -28,6 +29,7 @@ var SystemConfigService = (function () {
         this.getFileBySysIdUrl = "http://localhost:3200/systemConfig/getFileBySysId";
         this.deleteUrl = "http://localhost:3200/systemConfig/delete";
         this.updateUrl = "http://localhost:3200/systemConfig/update";
+        this.profileUrl = "http://localhost:3200/v1/api/properties";
     }
     SystemConfigService.prototype.listSystemConfig = function () {
         // ...using get request
@@ -72,9 +74,17 @@ var SystemConfigService = (function () {
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     SystemConfigService.prototype.deleteSystemConfig = function (id) {
-        return this.http.delete(this.deleteUrl + "/" + id) // ...using put request
-            .map(function (res) { return res.json(); }) // ...and calling .json() on the response to return data
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); }); //...errors if any
+        return this.http.delete(this.deleteUrl + "/" + id)
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
+    };
+    SystemConfigService.prototype.listProperties = function (body) {
+        var bodyString = JSON.stringify(body);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.profileUrl, body, options)
+            .map(function (res) { res.json(), console.log('res: ' + res); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     SystemConfigService = __decorate([
         core_1.Injectable(), 

@@ -91,16 +91,6 @@ module.exports = {
 		});
 	},
 
-	delete : function(req, res) {
-		const sql = "delete from system_cfg where ?";
-		const post = {id: req.params.id};
-
-		connect.query(sql,post, function(err, rows) {
-	 		if (err) { throw err;}
-	  		res("delete success");
-		});
-	},
-
 	update: function(req, res) {
 
 		const post = {
@@ -120,5 +110,25 @@ module.exports = {
 			if (err) { throw err;}
 	  		res(rows);
 		});
-	}
+	},
+
+	delete : function(req, res) {
+		const sql = "delete from system_cfg where ?";
+		const post = {id: req.params.id};
+
+		connect.query(sql,post, function(err, rows) {
+	 		if (err) { throw err;}
+	  		res("delete success");
+		});
+	},
+
+	deleteBySysId : function(req, res) {
+		const sql = "delete from system_cfg where ?";
+		const post = {system_id: req.params.id};
+
+		connect.query(sql,post, function(err, rows) {
+	 		if (err) { throw err;}
+	  		res(rows);
+		});
+	},
 }

@@ -5,9 +5,7 @@ import { SystemConfigComponent } from './component/system-config.component';
 import { SystemFileComponent } from './component/system-files.component';
 import { SystemXmlConfigComponent } from './component/system-config-xml.component';
 import { SystemFilesAddingComponent } from './component/system-files-adding.component';
-
-
-
+import { PropertiesComponent } from './component/properties.component';
 
 
 const routes: RouterConfig = [
@@ -39,6 +37,10 @@ const routes: RouterConfig = [
 {
   path: 'addSystemFile/:id',
   component: SystemFilesAddingComponent
+},
+{
+  path: 'properties/:profile',
+  component: PropertiesComponent
 }
 ];
 

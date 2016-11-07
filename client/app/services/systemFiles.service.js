@@ -23,6 +23,7 @@ var SystemFilesService = (function () {
         this.getBysidUrl = "http://localhost:3200/systemFiles/getFileBysId";
         this.addUrl = "http://localhost:3200/systemFiles/add";
         this.deleteUrl = "http://localhost:3200/systemFiles/delete";
+        this.deletePFUrl = "http://localhost:3200/systemFiles/deleteFile";
         this.updateUrl = "http://localhost:3200/systemFiles/update";
     }
     SystemFilesService.prototype.listSystemFile = function () {
@@ -51,8 +52,13 @@ var SystemFilesService = (function () {
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
-    SystemFilesService.prototype.deleteSystemFIle = function (id) {
+    SystemFilesService.prototype.deleteSystemFile = function (id) {
         return this.http.delete(this.deleteUrl + "/" + id)
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
+    };
+    SystemFilesService.prototype.deletePropertiesFile = function (id) {
+        return this.http.delete(this.deletePFUrl + "/" + id)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
@@ -63,7 +69,7 @@ var SystemFilesService = (function () {
         var newBody = '';
         if (bodyString != "" && bodyString != null) {
             var bodyArray = bodyString.split(',');
-            var bs = bodyArray[0] + ',' + bodyArray[3];
+            var bs = bodyArray[0] + ',' + bodyArray[3] + '}';
             newBody = JSON.parse(bs);
         }
         return this.http.post(this.updateUrl, newBody, options)

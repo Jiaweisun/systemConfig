@@ -59,3 +59,19 @@ exports.add = {
            api.add(request,reply);
         }
 }
+
+
+exports.delete = {
+    description: 'delete a System',
+    notes: '删除系统信息',
+    tags: ['api'],
+    cors: true,
+    validate: {
+        params: {
+            id: Joi.number().integer()
+        }
+    },
+    handler: function(request, reply) {
+        api.delete(request,reply);
+    }
+}

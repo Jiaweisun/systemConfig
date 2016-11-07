@@ -13,6 +13,11 @@ var router_1 = require('@angular/router');
 var router_2 = require('@angular/router');
 var system_service_1 = require('../services/system.service');
 var DashboardComponent = (function () {
+    // title: string = 'hi title';
+    // message: string ='hi message description';
+    // confirmClicked: boolean = false;
+    // cancelClicked: boolean = false;
+    // isOPen: boolean= false;
     function DashboardComponent(router, systemService) {
         this.router = router;
         this.systemService = systemService;
@@ -35,6 +40,17 @@ var DashboardComponent = (function () {
     DashboardComponent.prototype.addSystem = function () {
         var link = ['/addSystem'];
         this.router.navigate(link);
+    };
+    DashboardComponent.prototype.deleteCurrent = function (id) {
+        var _this = this;
+        alert("确定删除吗？");
+        this.systemService.deleteSystem(id)
+            .subscribe(function (systems) { if (systems.length == 1) {
+            _this.system = systems[0];
+        } }, //Bind to view
+        function (//Bind to view
+            err) { console.log(err); }, function () { return console.log('done'); });
+        this.systems.length--;
     };
     DashboardComponent = __decorate([
         core_1.Component({

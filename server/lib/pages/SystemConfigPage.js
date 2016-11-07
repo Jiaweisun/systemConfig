@@ -98,22 +98,6 @@ exports.add = {
         }
 }
 
-exports.delete = {
-    description: 'delete a systemConfig',
-    notes: '删除系统配置信息',
-    tags:['api'],
-    cors:true,
-    validate: {
-        params: {
-            id: Joi.number().integer()
-        }
-    },
-    handler: function(request, reply) {
-        api.delete(request,reply);
-    }
-}
-
-
 exports.update = {
     description: 'update a systemConfig information',
     notes: '根据systemConfig ID更新systemConfig信息。',
@@ -135,5 +119,36 @@ exports.update = {
     handler: function (request, reply) {    
             api.update(request,reply);
         }
+}
+
+
+exports.delete = {
+    description: 'delete a systemConfig',
+    notes: '删除系统配置信息',
+    tags:['api'],
+    cors:true,
+    validate: {
+        params: {
+            id: Joi.number().integer()
+        }
+    },
+    handler: function(request, reply) {
+        api.delete(request,reply);
+    }
+}
+
+exports.deleteBySysId = {
+    description: 'delete a systemConfig by system_id',
+    notes: '删除系统编号为xxx的系统配置信息',
+    tags:['api'],
+    cors:true,
+    validate: {
+        params: {
+            id: Joi.number().integer()
+        }
+    },
+    handler: function(request, reply) {
+        api.deleteBySysId(request,reply);
+    }
 }
 

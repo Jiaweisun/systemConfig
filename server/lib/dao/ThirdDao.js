@@ -33,7 +33,7 @@ module.exports = {
 				connect.query(sql, function(err, rows) {
 
 				let result = " \t ";
-				let resultJson = '{ "propertites":{';
+				let resultJson = '{ "properties":{';
 		 		if (err) { throw err;}
 		 		if (format == "json") {		 			
 		 			for (var i = 0; i < rows.length; i++) {
@@ -76,6 +76,7 @@ module.exports = {
 		 					}		
 		 			}
 		 			res(result);
+		 			console.log("results: "+result);
 		 		}
 			});
 
@@ -86,6 +87,7 @@ module.exports = {
 
 
 	getFilesByPs:function(req,res) {
+		console.log("req: "+req)
 		let result = '{"files" :[';
 		let resultp = '';	
 		let  xml_result = '';

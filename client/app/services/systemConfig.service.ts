@@ -8,6 +8,7 @@ import  {SystemConfig} from '../entity/SystemConfig';
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class SystemConfigService {
@@ -21,6 +22,8 @@ export class SystemConfigService {
      private getFileBySysIdUrl = "http://localhost:3200/systemConfig/getFileBySysId";
      private deleteUrl ="http://localhost:3200/systemConfig/delete";
      private updateUrl = "http://localhost:3200/systemConfig/update";
+
+     private profileUrl = "http://localhost:3200/v1/api/properties";
 
      listSystemConfig() : Observable<SystemConfig[]>{
          // ...using get request
@@ -86,8 +89,21 @@ export class SystemConfigService {
       }
 
       deleteSystemConfig(id: number): Observable<SystemConfig[]>{
-         return this.http.delete(`${this.deleteUrl}/${id}`) // ...using put request
-                         .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-                         .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+         return this.http.delete(`${this.deleteUrl}/${id}`)
+                         .map((res:Response) => res.json())
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
       }
+
+       listProperties(body:Object): Observable<string[]>{
+        let bodyString = JSON.stringify(body); 
+        let headers = new Headers({ 'Content-Type': 'application/json' }); 
+        let options = new RequestOptions({ headers: headers }); 
+
+          
+        return this.http.post(this.profileUrl, body, options)                
+                         .map((res) => {res.json(),console.log('res: '+res)})  
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
+      }
+
+      
 }

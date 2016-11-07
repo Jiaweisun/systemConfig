@@ -6,6 +6,7 @@ var system_config_component_1 = require('./component/system-config.component');
 var system_files_component_1 = require('./component/system-files.component');
 var system_config_xml_component_1 = require('./component/system-config-xml.component');
 var system_files_adding_component_1 = require('./component/system-files-adding.component');
+var properties_component_1 = require('./component/properties.component');
 var routes = [
     {
         path: '',
@@ -35,6 +36,10 @@ var routes = [
     {
         path: 'addSystemFile/:id',
         component: system_files_adding_component_1.SystemFilesAddingComponent
+    },
+    {
+        path: 'properties/:profile',
+        component: properties_component_1.PropertiesComponent
     }
 ];
 exports.appRouterProviders = [

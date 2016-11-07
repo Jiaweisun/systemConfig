@@ -17,6 +17,7 @@ var system_service_1 = require('../services/system.service');
 var system_1 = require('../entity/system');
 var SystemFiles_1 = require('../entity/SystemFiles');
 var SystemConfig_1 = require('../entity/SystemConfig');
+var PropertiesCondition_1 = require('../entity/PropertiesCondition');
 var SystemConfigComponent = (function () {
     function SystemConfigComponent(router, systemConfigService, systemFileService, systemService, route) {
         this.router = router;
@@ -29,6 +30,7 @@ var SystemConfigComponent = (function () {
         this.system = new system_1.System('', '');
         this.systemFile = new SystemFiles_1.SystemFile('', '', '');
         this.systemConfig = new SystemConfig_1.SystemConfig(1, '', '', '', '', '', 1);
+        this.propertiesCondition = new PropertiesCondition_1.PropertiesCondition();
         this.devChecked = 'yes';
         this.qaChecked = 'yes';
         this.prodChecked = 'yes';
@@ -141,6 +143,22 @@ var SystemConfigComponent = (function () {
                 err) { console.log(err); }, function () { return console.log(' systemConfigs info is null.'); });
         }
         this.systemConfigs.length--;
+    };
+    SystemConfigComponent.prototype.devDetail = function () {
+        this.propertiesCondition = new PropertiesCondition_1.PropertiesCondition(this.system.name, 'dev', this.systemFile.name, 'text');
+        alert('hi system name: ' + this.propertiesCondition.system + " ,file name: " + this.propertiesCondition.filename + ",123: " + this.propertiesCondition.format);
+        this.systemConfigService.listProperties(this.propertiesCondition)
+            .subscribe(function (results) { if (results != null) {
+            alert('results: ' + results);
+        }
+        else {
+            alert('nulllllll');
+        } }, function (err) { alert(err); }, function () { return console.log(' results are null.'); });
+        ;
+    };
+    SystemConfigComponent.prototype.qaDetail = function () {
+        var link = ['/properties/' + 'qa'];
+        this.router.navigate(link);
     };
     __decorate([
         core_1.Output(), 

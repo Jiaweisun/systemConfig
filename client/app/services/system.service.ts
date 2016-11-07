@@ -16,6 +16,7 @@ export class SystemService {
      private listUrl = "http://localhost:3200/system/list";
      private getUrl = "http://localhost:3200/system/get";
      private addUrl = "http://localhost:3200/system/add";
+     private deleteUrl = "http://localhost:3200/system/delete";
 
      listSystem() : Observable<System[]>{        
          return this.http.get(this.listUrl)                       
@@ -43,4 +44,12 @@ export class SystemService {
                          }) // ...and calling .json() on the response to return data
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
       }
+
+
+      deleteSystem(id: number): Observable<System[]>{
+         return this.http.delete(`${this.deleteUrl}/${id}`)
+                         .map((res:Response) => res.json()) 
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
+      }
+
 }

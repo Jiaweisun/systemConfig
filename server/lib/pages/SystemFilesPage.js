@@ -91,6 +91,22 @@ exports.add = {
         }
 }
 
+exports.update = {
+    description: 'update a systemFile information',
+    notes: '根据systemFile systemFile',
+    tags: ['api'],
+    cors: true,
+    validate: {
+         payload: {
+            id: Joi.number().integer(),            
+            content: Joi.string().trim().min(1).max(1000),
+        }
+    },
+    handler: function (request, reply) {    
+            api.update(request,reply);
+        }
+}   
+
 exports.delete = {
     description: 'delete a SystemFile',
     notes: '删除系统文件信息',
@@ -106,18 +122,32 @@ exports.delete = {
     }
 }
 
-exports.update = {
-    description: 'update a systemFile information',
-    notes: '根据systemFile systemFile',
+exports.deleteFile = {
+    description: 'delete a SystemFile which type is properties',
+    notes: '删除系统文件信息',
     tags: ['api'],
     cors: true,
     validate: {
-         payload: {
-            id: Joi.number().integer(),            
-            content: Joi.string().trim().min(1).max(1000),
+        params: {
+            id: Joi.number().integer()
         }
     },
-    handler: function (request, reply) {    
-            api.update(request,reply);
+    handler: function(request, reply) {
+        api.deleteFile(request,reply);
+    }
+}
+
+exports.deleteBySysId = {
+    description: 'delete SystemFiles by system_id',
+    notes: '删除系统编号为xxxx的系统文件信息',
+    tags: ['api'],
+    cors: true,
+    validate: {
+        params: {
+            id: Joi.number().integer()
         }
+    },
+    handler: function(request, reply) {
+        api.deleteBySysId(request,reply);
+    }
 }

@@ -86,10 +86,26 @@ var SystemFileComponent = (function () {
         if (systemFile.type == "xml" || systemFile.type == "text/xml") {
             link = ['/xml/' + system.id + '/' + systemFile.id];
         }
-        if (systemFile.type == "propertites") {
+        if (systemFile.type == "properties" || systemFile.type == "propertites") {
             link = ['/config/' + system.id + "/" + systemFile.id];
         }
         this.router.navigate(link);
+    };
+    SystemFileComponent.prototype.deleteCurrent = function (system, systemFile) {
+        var _this = this;
+        console.log('fid:' + systemFile.id + ", type: " + systemFile.type);
+        if (systemFile.type == "xml" || systemFile.type == "text/xml") {
+            //delete file 
+            this.systemFileService.deleteSystemFile(systemFile.id).subscribe(function (systemFiles) { if (systemFiles.length == 1) {
+                _this.systemFile = systemFiles[0];
+            } }, function (err) { console.log(err); }, function () { return console.log(' none'); });
+        }
+        if (systemFile.type == "properties" || systemFile.type == "propertites") {
+            this.systemFileService.deletePropertiesFile(systemFile.id).subscribe(function (systemFiles) { if (systemFiles.length == 1) {
+                _this.systemFile = systemFiles[0];
+            } }, function (err) { console.log(err); }, function () { return console.log(' none'); });
+        }
+        this.systemFiles.length--;
     };
     __decorate([
         core_1.Output(), 

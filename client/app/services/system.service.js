@@ -22,6 +22,7 @@ var SystemService = (function () {
         this.listUrl = "http://localhost:3200/system/list";
         this.getUrl = "http://localhost:3200/system/get";
         this.addUrl = "http://localhost:3200/system/add";
+        this.deleteUrl = "http://localhost:3200/system/delete";
     }
     SystemService.prototype.listSystem = function () {
         return this.http.get(this.listUrl)
@@ -42,6 +43,11 @@ var SystemService = (function () {
             res.json();
         }) // ...and calling .json() on the response to return data
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); }); //...errors if any
+    };
+    SystemService.prototype.deleteSystem = function (id) {
+        return this.http.delete(this.deleteUrl + "/" + id)
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     SystemService = __decorate([
         core_1.Injectable(), 

@@ -8,6 +8,7 @@ import { SystemService} from '../services/system.service';
 import { System } from '../entity/system';
 import { SystemFile } from '../entity/SystemFiles';
 import { SystemConfig} from '../entity/SystemConfig';
+import { PropertiesCondition } from '../entity/PropertiesCondition';
 
 @Component({
   selector: 'system-config',
@@ -22,6 +23,8 @@ export class SystemConfigComponent implements OnInit, OnDestroy {
   system: System =new System('','');
   systemFile: SystemFile = new SystemFile('','','');
   systemConfig: SystemConfig = new SystemConfig(1,'','','','','',1);
+  propertiesCondition:PropertiesCondition = new PropertiesCondition();
+  propertiesDetails:string;
   error: any;
   sub: any;
   file_id: number;
@@ -142,5 +145,23 @@ getscBYsfid(id:number,file_id:number) { //, format:string,  ,format
     }    
     this.systemConfigs.length--;
   }
+
+
+  devDetail() {
+    
+    this.propertiesCondition = new PropertiesCondition(this.system.name,'dev',this.systemFile.name,'text');
+    alert('hi system name: '+this.propertiesCondition.system+" ,file name: "+this.propertiesCondition.filename+",123: "+this.propertiesCondition.format);
+    this.systemConfigService.listProperties(this.propertiesCondition)
+        .subscribe( results => {if(results!=null){alert('results: '+results)} else{ alert('nulllllll')}},
+           err => { alert(err)},
+                    ()=> console.log(' results are null.'));;
+  }
+
+  qaDetail(){
+     let link = ['/properties/'+'qa'];
+     this.router.navigate(link);  
+  }
 }
+
+
 
