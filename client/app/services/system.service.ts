@@ -13,23 +13,19 @@ import 'rxjs/add/operator/catch';
 export class SystemService {
      
      constructor (private http: Http) {}
-     private listUrl = "http://localhost:3200/system/list";
-     private getUrl = "http://localhost:3200/system/get";
-     private addUrl = "http://localhost:3200/system/add";
-     private deleteUrl = "http://localhost:3200/system/delete";
+     private baseUrl = "http://localhost:3200/system";
 
      listSystem() : Observable<System[]>{        
-         return this.http.get(this.listUrl)                       
-                         .map((res:Response) => res.json())
-                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+         return this.http.get(this.baseUrl+"/list")                       
+                         .map(res=>res.json()) 
+                         .catch(this.handleError); 
         
      }
 
      getSystem(id: number): Observable<System[]>  { //observable -- map,   promise--then
-         return this.http.get(this.getUrl+"/"+id)                        
-                .map((res:Response) => res.json())
-                // .do(user =>console.log(user+'....from service'+id))                       
-                .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+         return this.http.get(this.baseUrl+"/get/"+id)                        
+                     .map(res=>res.json()) 
+                      .catch(this.handleError); 
         
       }
 
@@ -38,18 +34,21 @@ export class SystemService {
         let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         let options = new RequestOptions({ headers: headers }); // Create a request option
 
-        return this.http.post(this.addUrl, body, options) // ...using post request
-                         .map((res:Response) => {
-                             res.json();
-                         }) // ...and calling .json() on the response to return data
-                         .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+        return this.http.post(this.baseUrl+"/add", body, options) // ...using post request
+                         .map(res=>res.json()) 
+                         .catch(this.handleError); //...errors if any
       }
 
 
       deleteSystem(id: number): Observable<System[]>{
-         return this.http.delete(`${this.deleteUrl}/${id}`)
-                         .map((res:Response) => res.json()) 
-                         .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
+         return this.http.delete(`${this.baseUrl}/delete/${id}`)
+                         .map(res=>res.json()) 
+                         .catch(this.handleError); 
       }
+        private handleError (error: any) {
+            let errMsg = 'server error';
+            console.error(errMsg); // log to console instead
+            return Observable.throw(errMsg);
+        }      
 
 }

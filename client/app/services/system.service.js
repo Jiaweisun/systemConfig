@@ -19,35 +19,35 @@ require('rxjs/add/operator/catch');
 var SystemService = (function () {
     function SystemService(http) {
         this.http = http;
-        this.listUrl = "http://localhost:3200/system/list";
-        this.getUrl = "http://localhost:3200/system/get";
-        this.addUrl = "http://localhost:3200/system/add";
-        this.deleteUrl = "http://localhost:3200/system/delete";
+        this.baseUrl = "http://localhost:3200/system";
     }
     SystemService.prototype.listSystem = function () {
-        return this.http.get(this.listUrl)
+        return this.http.get(this.baseUrl + "/list")
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
+            .catch(this.handleError);
     };
     SystemService.prototype.getSystem = function (id) {
-        return this.http.get(this.getUrl + "/" + id)
+        return this.http.get(this.baseUrl + "/get/" + id)
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
+            .catch(this.handleError);
     };
     SystemService.prototype.addSystem = function (body) {
         var bodyString = JSON.stringify(body); // Stringify payload
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
-        return this.http.post(this.addUrl, body, options) // ...using post request
-            .map(function (res) {
-            res.json();
-        }) // ...and calling .json() on the response to return data
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); }); //...errors if any
+        return this.http.post(this.baseUrl + "/add", body, options) // ...using post request
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError); //...errors if any
     };
     SystemService.prototype.deleteSystem = function (id) {
-        return this.http.delete(this.deleteUrl + "/" + id)
+        return this.http.delete(this.baseUrl + "/delete/" + id)
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
+            .catch(this.handleError);
+    };
+    SystemService.prototype.handleError = function (error) {
+        var errMsg = 'server error';
+        console.error(errMsg); // log to console instead
+        return Rx_1.Observable.throw(errMsg);
     };
     SystemService = __decorate([
         core_1.Injectable(), 

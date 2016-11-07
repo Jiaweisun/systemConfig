@@ -18,26 +18,20 @@ require('rxjs/add/operator/catch');
 var SystemFilesService = (function () {
     function SystemFilesService(http) {
         this.http = http;
-        this.listUrl = "http://localhost:3200/systemFiles/list";
-        this.getUrl = "http://localhost:3200/systemFiles/getById";
-        this.getBysidUrl = "http://localhost:3200/systemFiles/getFileBysId";
-        this.addUrl = "http://localhost:3200/systemFiles/add";
-        this.deleteUrl = "http://localhost:3200/systemFiles/delete";
-        this.deletePFUrl = "http://localhost:3200/systemFiles/deleteFile";
-        this.updateUrl = "http://localhost:3200/systemFiles/update";
+        this.baseUrl = "http://localhost:3200/systemFiles";
     }
     SystemFilesService.prototype.listSystemFile = function () {
-        return this.http.get(this.listUrl)
+        return this.http.get(this.baseUrl + "/list")
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     SystemFilesService.prototype.getSystemFileBySysId = function (system_id) {
-        return this.http.get(this.getBysidUrl + "/" + system_id)
+        return this.http.get(this.baseUrl + "/getFileBysId/" + system_id)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     SystemFilesService.prototype.getSystemFile = function (id) {
-        return this.http.get(this.getUrl + "/" + id)
+        return this.http.get(this.baseUrl + "/getById/" + id)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
@@ -48,17 +42,17 @@ var SystemFilesService = (function () {
         var sysString = '{"system_id":' + system_id + ',';
         var bString = sysString + bodyString.substring(1);
         var myJsonObject = JSON.parse(bString);
-        return this.http.post(this.addUrl, myJsonObject, options)
+        return this.http.post(this.baseUrl + "/add", myJsonObject, options)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     SystemFilesService.prototype.deleteSystemFile = function (id) {
-        return this.http.delete(this.deleteUrl + "/" + id)
+        return this.http.delete(this.baseUrl + "/delete/" + id)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     SystemFilesService.prototype.deletePropertiesFile = function (id) {
-        return this.http.delete(this.deletePFUrl + "/" + id)
+        return this.http.delete(this.baseUrl + "/deleteFile/" + id)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
@@ -72,7 +66,7 @@ var SystemFilesService = (function () {
             var bs = bodyArray[0] + ',' + bodyArray[3] + '}';
             newBody = JSON.parse(bs);
         }
-        return this.http.post(this.updateUrl, newBody, options)
+        return this.http.post(this.baseUrl + "/update", newBody, options)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };

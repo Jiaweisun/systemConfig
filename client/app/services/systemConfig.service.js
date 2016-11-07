@@ -16,44 +16,36 @@ var Rx_1 = require('rxjs/Rx');
 // Import RxJs required methods
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
-require('rxjs/add/operator/toPromise');
 var SystemConfigService = (function () {
     // Resolve HTTP using the constructor
     function SystemConfigService(http) {
         this.http = http;
-        this.listUrl = "http://localhost:3200/systemConfig/list";
-        this.getUrl = "http://localhost:3200/systemConfig/get";
-        this.addUrl = "http://localhost:3200/systemConfig/add";
-        this.getBysfUrl = "http://localhost:3200/systemConfig/getBySFId";
-        this.getBySysIdUrl = "http://localhost:3200/systemConfig/getBySysId";
-        this.getFileBySysIdUrl = "http://localhost:3200/systemConfig/getFileBySysId";
-        this.deleteUrl = "http://localhost:3200/systemConfig/delete";
-        this.updateUrl = "http://localhost:3200/systemConfig/update";
+        this.baseUrl = "http://localhost:3200/systemConfig";
         this.profileUrl = "http://localhost:3200/v1/api/properties";
     }
     SystemConfigService.prototype.listSystemConfig = function () {
         // ...using get request
-        return this.http.get(this.listUrl)
+        return this.http.get(this.baseUrl + "/list")
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     SystemConfigService.prototype.getSystemConfig = function (id) {
-        return this.http.get(this.getUrl + "/" + id)
+        return this.http.get(this.baseUrl + "/get/" + id)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     SystemConfigService.prototype.getFileBySysId = function (system_id) {
-        return this.http.get(this.getFileBySysIdUrl + "/" + system_id)
+        return this.http.get(this.baseUrl + "/getFileBySysId/" + system_id)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     SystemConfigService.prototype.getScBySysId = function (system_id) {
-        return this.http.get(this.getBySysIdUrl + "/" + system_id)
+        return this.http.get(this.baseUrl + "/getBySysId/" + system_id)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     SystemConfigService.prototype.getSCBysf = function (system_id, file_id) {
-        return this.http.get(this.getBysfUrl + "/" + system_id + "/" + file_id)
+        return this.http.get(this.baseUrl + "/getBySFId/" + system_id + "/" + file_id)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
@@ -61,7 +53,7 @@ var SystemConfigService = (function () {
         var bodyString = JSON.stringify(body);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.addUrl, body, options)
+        return this.http.post(this.baseUrl + "/add", body, options)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
@@ -69,22 +61,28 @@ var SystemConfigService = (function () {
         var bodyString = JSON.stringify(body);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.updateUrl, body, options)
+        return this.http.post(this.baseUrl + "/update", body, options)
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     SystemConfigService.prototype.deleteSystemConfig = function (id) {
-        return this.http.delete(this.deleteUrl + "/" + id)
+        return this.http.delete(this.baseUrl + "/delete/" + id)
             .map(function (res) { return res.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
+            .catch(this.handleError);
     };
     SystemConfigService.prototype.listProperties = function (body) {
         var bodyString = JSON.stringify(body);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
+        console.log('bodyString: ' + bodyString);
         return this.http.post(this.profileUrl, body, options)
-            .map(function (res) { res.json(), console.log('res: ' + res); })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    SystemConfigService.prototype.handleError = function (error) {
+        var errMsg = 'server error';
+        console.error(errMsg); // log to console instead
+        return Rx_1.Observable.throw(errMsg);
     };
     SystemConfigService = __decorate([
         core_1.Injectable(), 

@@ -11,29 +11,23 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class SystemFilesService {     
      constructor (private http: Http) {}
-     private listUrl = "http://localhost:3200/systemFiles/list";
-     private getUrl = "http://localhost:3200/systemFiles/getById";
-     private getBysidUrl = "http://localhost:3200/systemFiles/getFileBysId";
-     private addUrl = "http://localhost:3200/systemFiles/add";   
-     private deleteUrl ="http://localhost:3200/systemFiles/delete";
-     private deletePFUrl ="http://localhost:3200/systemFiles/deleteFile";
-     private updateUrl = "http://localhost:3200/systemFiles/update";
+     private baseUrl = "http://localhost:3200/systemFiles";
 
      listSystemFile() : Observable<SystemFile[]>{        
-         return this.http.get(this.listUrl)                        
+         return this.http.get(this.baseUrl+"/list")                        
                          .map((res:Response) => res.json())                        
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
         
      }
 
     getSystemFileBySysId(system_id: number): Observable<SystemFile[]>  { //observable -- map,   promise--then
-         return this.http.get(this.getBysidUrl+"/"+system_id)                        
+         return this.http.get(this.baseUrl+"/getFileBysId/"+system_id)                        
                 .map((res:Response) => res.json())                                     
                 .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
         
       }
      getSystemFile(id: number): Observable<SystemFile[]>  { 
-         return this.http.get(this.getUrl+"/"+id)                        
+         return this.http.get(this.baseUrl+"/getById/"+id)                        
                 .map((res:Response) => res.json())                      
                 .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
         
@@ -49,19 +43,19 @@ export class SystemFilesService {
         let bString = sysString+bodyString.substring(1);
         var myJsonObject = JSON.parse(bString);     
         
-        return this.http.post(this.addUrl, myJsonObject, options) 
+        return this.http.post(this.baseUrl+"/add", myJsonObject, options) 
                          .map((res:Response) => res.json()) 
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
       }
 
       deleteSystemFile(id: number): Observable<SystemFile[]>{
-         return this.http.delete(`${this.deleteUrl}/${id}`)
+         return this.http.delete(`${this.baseUrl}/delete/${id}`)
                          .map((res:Response) => res.json()) 
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
       }
 
       deletePropertiesFile(id: number): Observable<SystemFile[]>{
-         return this.http.delete(`${this.deletePFUrl}/${id}`)
+         return this.http.delete(`${this.baseUrl}/deleteFile/${id}`)
                          .map((res:Response) => res.json()) 
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
       }
@@ -77,7 +71,7 @@ export class SystemFilesService {
             let bs=bodyArray[0]+','+bodyArray[3]+'}';                 
            newBody = JSON.parse(bs); 
           }            
-        return this.http.post(this.updateUrl, newBody, options) 
+        return this.http.post(this.baseUrl+"/update", newBody, options) 
                          .map((res:Response) => res.json()) 
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
       }
