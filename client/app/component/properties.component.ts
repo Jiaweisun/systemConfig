@@ -9,7 +9,7 @@ import { SystemService} from '../services/system.service';
 import { SystemConfig} from '../entity/SystemConfig';
 import { SystemFile } from '../entity/SystemFiles';
 import { System } from '../entity/system';
-import { Result } from '../entity/Result';
+// import { Result } from '../entity/Result';
 
 
 @Component({

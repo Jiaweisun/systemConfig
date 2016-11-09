@@ -17,6 +17,7 @@ var systemFiles_service_1 = require('../services/systemFiles.service');
 var system_service_1 = require('../services/system.service');
 var SystemFiles_1 = require('../entity/SystemFiles');
 var system_1 = require('../entity/system');
+// import { Result } from '../entity/Result';
 var PropertiesComponent = (function () {
     function PropertiesComponent(router, systemConfigService, systemFileService, systemService, route) {
         this.router = router;
