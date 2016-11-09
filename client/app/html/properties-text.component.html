@@ -1,0 +1,16 @@
+
+<div class="header"> 
+<h2 style="display: inline-block"> {{system.title}} ---- {{systemFile.name}} </h2>
+</div>
+<div class=""> 
+<button class="button-index pure-button ml-0" (click)="backToIndex()">首页</button>
+<button class="button-index pure-button" (click)="goBack(systemFile)">上一页</button>
+</div>
+
+<div class="add-form">
+  <textarea  style='height:75%;width:80%;'  [(ngModel)]="result" ></textarea>
+</div>
+
+<div class="add-form">
+	<button class="button-save pure-button" (click)="updateToSave(result)">保存</button>
+</div>

@@ -20,6 +20,7 @@ exports.routers =  [
 	{ method: 'POST',  path: '/systemConfig/update',  config: SystemConfigPage.update},
 	{ method: 'DELETE',  path: '/systemConfig/delete/{id}',  config: SystemConfigPage.delete},
 	{ method: 'DELETE',  path: '/systemConfig/deleteBySysId/{system_id}',  config: SystemConfigPage.deleteBySysId},
+	{ method: 'POST', path: '/systemConfig/findBySFName',	config: SystemConfigPage.findBySFName},
 
 	
 

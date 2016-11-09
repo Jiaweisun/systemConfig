@@ -68,14 +68,14 @@ export class SystemConfigService {
         let headers = new Headers({ 'Content-Type': 'application/json' }); 
         let options = new RequestOptions({ headers: headers }); 
 
-          return this.http.post(this.baseUrl+"/update",body,options)
+         return this.http.post(this.baseUrl+"/update",body,options)
                      .map((res:Response) => res.json()) 
                      .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
       }
 
       deleteSystemConfig(id: number): Observable<SystemConfig[]>{
          return this.http.delete(`${this.baseUrl}/delete/${id}`)
-                         .map(res=>res.json())
+                         .map((res:Response) => res.json()) 
                          .catch(this.handleError);
       }
 
@@ -84,9 +84,8 @@ export class SystemConfigService {
         let headers = new Headers({ 'Content-Type': 'application/json' }); 
         let options = new RequestOptions({ headers: headers }); 
 
-        console.log('bodyString: '+bodyString);
-        return this.http.post(this.profileUrl, body, options)                
-                         .map(res=>res.json())  
+        return this.http.post(this.baseUrl+"/findBySFName", body, options)                
+                         .map((res:Response) => res.json()) 
                          .catch(this.handleError); 
       }
 

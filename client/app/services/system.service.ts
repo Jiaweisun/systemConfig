@@ -1,4 +1,3 @@
-/* * * ./app/comments/services/comment.service.ts * * */
 // Imports
 import { Injectable }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
@@ -17,14 +16,14 @@ export class SystemService {
 
      listSystem() : Observable<System[]>{        
          return this.http.get(this.baseUrl+"/list")                       
-                         .map(res=>res.json()) 
+                         .map((res:Response) => res.json())
                          .catch(this.handleError); 
         
      }
 
      getSystem(id: number): Observable<System[]>  { //observable -- map,   promise--then
          return this.http.get(this.baseUrl+"/get/"+id)                        
-                     .map(res=>res.json()) 
+                     .map((res:Response) => res.json())
                       .catch(this.handleError); 
         
       }
@@ -35,14 +34,14 @@ export class SystemService {
         let options = new RequestOptions({ headers: headers }); // Create a request option
 
         return this.http.post(this.baseUrl+"/add", body, options) // ...using post request
-                         .map(res=>res.json()) 
+                         .map((res:Response) => res.json())
                          .catch(this.handleError); //...errors if any
       }
 
 
       deleteSystem(id: number): Observable<System[]>{
          return this.http.delete(`${this.baseUrl}/delete/${id}`)
-                         .map(res=>res.json()) 
+                         .map((res:Response) => res.json())
                          .catch(this.handleError); 
       }
         private handleError (error: any) {

@@ -40,13 +40,13 @@ var SystemConfigComponent = (function () {
         var _this = this;
         this.sub = this.route.params.subscribe(function (params) {
             if (params['system_id'] !== undefined && params['file_id'] !== undefined) {
-                var id = +params['system_id'];
+                _this.system_id = +params['system_id'];
                 _this.file_id = +params['file_id'];
                 _this.navigated = true;
                 //this.getSystemConfig(id);
-                _this.getSystemById(id);
+                _this.getSystemById(_this.system_id);
                 _this.getFileById(_this.file_id);
-                _this.getscBYsfid(id, _this.file_id);
+                _this.getscBYsfid(_this.system_id, _this.file_id);
             }
             else {
                 _this.navigated = false;
@@ -105,6 +105,11 @@ var SystemConfigComponent = (function () {
     SystemConfigComponent.prototype.addNewColumn = function () {
         this.systemConfigs.push(new SystemConfig_1.SystemConfig(this.system.id, '', '', '', '', '', 0));
     };
+    //新增一页
+    SystemConfigComponent.prototype.addNewPage = function () {
+        var link = ['/pt/' + this.system_id + '/' + this.file_id];
+        this.router.navigate(link);
+    };
     //保存所有列表
     SystemConfigComponent.prototype.saveList = function () {
         for (var i = 0; i < this.systemConfigs.length; ++i) {
@@ -143,22 +148,6 @@ var SystemConfigComponent = (function () {
                 err) { console.log(err); }, function () { return console.log(' systemConfigs info is null.'); });
         }
         this.systemConfigs.length--;
-    };
-    SystemConfigComponent.prototype.devDetail = function () {
-        this.propertiesCondition = new PropertiesCondition_1.PropertiesCondition(this.system.name, 'dev', this.systemFile.name, 'text');
-        alert('hi system name: ' + this.propertiesCondition.system + " ,file name: " + this.propertiesCondition.filename + ",123: " + this.propertiesCondition.format);
-        this.systemConfigService.listProperties(this.propertiesCondition)
-            .subscribe(function (results) { if (results != null) {
-            alert('results: ' + results);
-        }
-        else {
-            alert('nulllllll');
-        } }, function (err) { alert(err); }, function () { return console.log(' results are null.'); });
-        ;
-    };
-    SystemConfigComponent.prototype.qaDetail = function () {
-        var link = ['/properties/' + 'qa'];
-        this.router.navigate(link);
     };
     __decorate([
         core_1.Output(), 

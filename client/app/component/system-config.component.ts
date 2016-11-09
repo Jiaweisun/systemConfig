@@ -27,6 +27,7 @@ export class SystemConfigComponent implements OnInit, OnDestroy {
   propertiesDetails:string;
   error: any;
   sub: any;
+  system_id: number;
   file_id: number;
   devChecked: any = 'yes';
   qaChecked: any = 'yes';
@@ -38,13 +39,13 @@ export class SystemConfigComponent implements OnInit, OnDestroy {
    ngOnInit() {
      this.sub = this.route.params.subscribe(params => {
       if (params['system_id'] !== undefined && params['file_id'] !== undefined) {
-        let id = +params['system_id'];
+        this.system_id = +params['system_id'];
         this.file_id = +params['file_id'];
         this.navigated = true;
         //this.getSystemConfig(id);
-        this.getSystemById(id);
+        this.getSystemById(this.system_id);
         this.getFileById(this.file_id);
-        this.getscBYsfid(id,this.file_id);
+        this.getscBYsfid(this.system_id,this.file_id);
         
       } else {
         this.navigated = false;        
@@ -105,6 +106,12 @@ getscBYsfid(id:number,file_id:number) { //, format:string,  ,format
     this.systemConfigs.push(new SystemConfig(this.system.id,'','','','','',0)); 
   }
 
+//新增一页
+  addNewPage() {
+    let link = ['/pt/'+this.system_id+'/'+this.file_id];
+     this.router.navigate(link); 
+  }
+
 //保存所有列表
   saveList() {
     for (var i = 0; i < this.systemConfigs.length; ++i) {
@@ -144,22 +151,6 @@ getscBYsfid(id:number,file_id:number) { //, format:string,  ,format
                     ()=> console.log(' systemConfigs info is null.'));
     }    
     this.systemConfigs.length--;
-  }
-
-
-  devDetail() {
-    
-    this.propertiesCondition = new PropertiesCondition(this.system.name,'dev',this.systemFile.name,'text');
-    alert('hi system name: '+this.propertiesCondition.system+" ,file name: "+this.propertiesCondition.filename+",123: "+this.propertiesCondition.format);
-    this.systemConfigService.listProperties(this.propertiesCondition)
-        .subscribe( results => {if(results!=null){alert('results: '+results)} else{ alert('nulllllll')}},
-           err => { alert(err)},
-                    ()=> console.log(' results are null.'));;
-  }
-
-  qaDetail(){
-     let link = ['/properties/'+'qa'];
-     this.router.navigate(link);  
   }
 }
 

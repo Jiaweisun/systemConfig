@@ -67,7 +67,7 @@ export class SystemFilesService {
         let options = new RequestOptions({ headers: headers }); 
           var newBody='';          
           if(bodyString!= "" && bodyString != null) {          
-            var bodyArray = bodyString.split(',');           
+            var bodyArray = bodyString.split(',');     
             let bs=bodyArray[0]+','+bodyArray[3]+'}';                 
            newBody = JSON.parse(bs); 
           }            

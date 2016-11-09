@@ -93,7 +93,6 @@ var SystemFileComponent = (function () {
     };
     SystemFileComponent.prototype.deleteCurrent = function (system, systemFile) {
         var _this = this;
-        console.log('fid:' + systemFile.id + ", type: " + systemFile.type);
         if (systemFile.type == "xml" || systemFile.type == "text/xml") {
             //delete file 
             this.systemFileService.deleteSystemFile(systemFile.id).subscribe(function (systemFiles) { if (systemFiles.length == 1) {

@@ -27,7 +27,6 @@ var SystemFilesAddingComponent = (function () {
         this.sub = this.route.params.subscribe(function (params) {
             if (params['id'] !== undefined) {
                 _this.id = +params['id'];
-                console.log(_this.id);
                 _this.navigated = true;
             }
             else {
@@ -50,7 +49,6 @@ var SystemFilesAddingComponent = (function () {
         this.systemFileService.addSystemFile(systemFile, this.id).
             subscribe(function (systemFiles) {
             _this.systemFile = systemFiles[0];
-            // console.log('systemFile: '+this.systemFile);       
         }, function (err) { console.log(err); _this.router.navigate(['/files/' + _this.id]); }, function () { return console.log(' file none'); });
     };
     SystemFilesAddingComponent.prototype.cancel = function () {

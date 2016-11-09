@@ -32,7 +32,6 @@ export class SystemXmlConfigComponent implements OnInit, OnDestroy {
    ngOnInit() {
      this.sub = this.route.params.subscribe(params => {
       if (params['system_id'] !== undefined && params['file_id'] !== undefined) {
-        console.log('system_id::'+params['system_id']);
         let id = +params['system_id'];
         let file_id = +params['file_id'];
         this.navigated = true;        

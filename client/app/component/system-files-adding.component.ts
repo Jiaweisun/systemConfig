@@ -34,8 +34,7 @@ export class SystemFilesAddingComponent implements OnInit {
       this.systemFile = new SystemFile('', '','');
      this.sub = this.route.params.subscribe(params => {
       if (params['id'] !== undefined) {
-        this.id = +params['id'];
-        console.log(this.id);
+        this.id = +params['id'];       
         this.navigated = true;        
       } else {
         this.navigated = false;        
@@ -55,8 +54,7 @@ export class SystemFilesAddingComponent implements OnInit {
      this.systemFileService.addSystemFile(systemFile,this.id).
         subscribe(
           systemFiles=>{
-            this.systemFile= systemFiles[0]; 
-            // console.log('systemFile: '+this.systemFile);       
+            this.systemFile= systemFiles[0];                    
           },err => { console.log(err); this.router.navigate(['/files/'+this.id]);}
           ,()=>console.log(' file none'));     
   }

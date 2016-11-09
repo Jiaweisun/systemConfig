@@ -74,8 +74,7 @@ var SystemConfigService = (function () {
         var bodyString = JSON.stringify(body);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        console.log('bodyString: ' + bodyString);
-        return this.http.post(this.profileUrl, body, options)
+        return this.http.post(this.baseUrl + "/findBySFName", body, options)
             .map(function (res) { return res.json(); })
             .catch(this.handleError);
     };

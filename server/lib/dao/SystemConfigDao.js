@@ -33,6 +33,7 @@ module.exports = {
 		});
 	},
 
+///// for thirdDao.js ---  getFilesByPs()
 	getBySfName: function(req, file_id, res) {
 
 		if (req.payload.profile=="dev") {
@@ -51,6 +52,33 @@ module.exports = {
 	  		res(rows);
 		});
 	},
+
+	////////// similar with thirdDao.js ---- findByPs()
+	findBySFName: function(req, res) {
+		const post = {
+			profile : req.payload.profile,
+			system : req.payload.system,
+			filename: req.payload.filename
+		}
+
+		if (post.profile=="dev") {
+			profile =  "dev_value";
+		}
+		if (post.profile=="qa") {
+			profile =  "qa_value";
+		}
+		if (post.profile=="prod") {
+			profile =  "prod_value";				
+		}
+
+		const sql = "select key_name ,  "+profile+" from system_cfg where file_id = (select id from system_file where name = '"+ post.filename +"' and system_id = (select id from system where name = '"+req.payload.system+"' ) )";
+		connect.query(sql, function(err,rows) {
+	 		if (err) { throw err;}
+	  		res(rows);
+		});
+	},
+
+
 
 	getBySysId: function(req, res) {
 

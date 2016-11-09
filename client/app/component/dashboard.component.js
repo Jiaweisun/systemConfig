@@ -13,11 +13,6 @@ var router_1 = require('@angular/router');
 var router_2 = require('@angular/router');
 var system_service_1 = require('../services/system.service');
 var DashboardComponent = (function () {
-    // title: string = 'hi title';
-    // message: string ='hi message description';
-    // confirmClicked: boolean = false;
-    // cancelClicked: boolean = false;
-    // isOPen: boolean= false;
     function DashboardComponent(router, systemService) {
         this.router = router;
         this.systemService = systemService;
@@ -27,9 +22,7 @@ var DashboardComponent = (function () {
     DashboardComponent.prototype.loadSystems = function () {
         var _this = this;
         this.systemService.listSystem()
-            .subscribe(function (systems) { return _this.systems = systems; }, //Bind to view
-        function (//Bind to view
-            err) { console.log(err); }, function () { return console.log('done'); });
+            .subscribe(function (systems) { return _this.systems = systems; }, function (err) { console.log(err); }, function () { return console.log('done'); });
     };
     DashboardComponent.prototype.ngOnInit = function () {
         this.loadSystems();

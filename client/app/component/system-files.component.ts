@@ -95,8 +95,7 @@ export class SystemFileComponent implements OnInit, OnDestroy {
     this.router.navigate(link);  
   }
 
-  deleteCurrent(system:System, systemFile:SystemFile) {
-     console.log('fid:'+systemFile.id+", type: "+systemFile.type);
+  deleteCurrent(system:System, systemFile:SystemFile) {    
     if(systemFile.type == "xml"||systemFile.type == "text/xml") {     
      //delete file 
      this.systemFileService.deleteSystemFile(systemFile.id).subscribe(

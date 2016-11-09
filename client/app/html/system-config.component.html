@@ -9,8 +9,9 @@
   </div>
 
   <div class="twoBtn"> 
-    <button class="button-index pure-button ml-0" (click)="backToIndex()">返回首页</button>
-    <button class="button-index pure-button" (click)="goBack(systemFile)">返回上一页</button>
+    <button class="button-index pure-button ml-0" (click)="backToIndex()">首页</button>
+    <button class="button-index pure-button" (click)="goBack(systemFile)">上一页</button>
+     <button class="button-adding pure-button config-add" (click)="addNewPage()">新增配置</button>
     <button class="button-adding pure-button config-add" (click)="addNewColumn()">新增配置项</button>
   </div>
 
@@ -27,8 +28,7 @@
     <label class="prodlabel">
       <input type="checkbox" class="checkbox" [(ngModel)]="prodChecked" name="checks" ng-true-value="yes"/>
       显示Product环境
-    </label>
-  
+    </label>  
   </div>
 
 
@@ -36,9 +36,9 @@
   <table >
     <th> <label>配置项名称</label></th> 
     <th><label>配置项</label></th>
-    <th><label *ngIf="devChecked">Dev环境   <button (click)="devDetail()">查看</button></label> </th>
-    <th><label *ngIf="qaChecked">QA环境 <button (click)="qaDetail()">查看</button></label></th>
-    <th><label *ngIf="prodChecked">Product环境 <a href="">查看</a></label></th>
+    <th><label *ngIf="devChecked">Dev环境  <a href="/properties/{{system.id}}/{{systemFile.id}}/0">详情</a></label> </th>
+    <th><label *ngIf="qaChecked">QA环境 <a href="/properties/{{system.id}}/{{systemFile.id}}/1">详情</a></label></th>
+    <th><label *ngIf="prodChecked">Product环境 <a href="/properties/{{system.id}}/{{systemFile.id}}/2">详情</a></label></th>
     <th><label>操作</label></th>
 
     <tr *ngFor="let systemConfig of systemConfigs">

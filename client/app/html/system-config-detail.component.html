@@ -2,17 +2,35 @@
 
 
   <div class="header"> 
-    <h2 style="display: inline-block"> {{system.title}} ---- {{systemFile.name}} ---- 测试环境</h2>
+    <h2 style="display: inline-block"> {{system.title}} ---- {{systemFile.name}}</h2>
   </div>
 
   <div class="twoBtn"> 
-    <button class="button-index pure-button ml-0" (click)="backToIndex()">返回首页</button>
-    <button class="button-index pure-button" (click)="goBack(systemFile)">返回上一页</button>
+    <button class="button-index pure-button ml-0" (click)="backToIndex()">首页</button>
+    <button class="button-index pure-button" (click)="goBack(systemFile)">上一页</button>
   </div>
 
-<div *ngIf = "propertiesDetails">
-  
-<!-- string content-->
-</div>
+  <div *ngIf = "systemConfigs">
+  	<div *ngIf = 'profile == 0'>
+  		 <h3>DEV</h3>
+		 <div *ngFor="let systemConfig of systemConfigs">		  		
+		  	 {{systemConfig.key_name}} = {{systemConfig.dev_value}}
+		</div>
+  	</div>
+
+  	<div *ngIf = 'profile == 1'>
+  		 <h3>QA</h3>
+		 <div *ngFor="let systemConfig of systemConfigs">		  		
+		  	 {{systemConfig.key_name}} = {{systemConfig.qa_value}}
+		</div>
+  	</div>
+
+  	<div *ngIf = 'profile == 2'>
+  		 <h3>PROD</h3>
+		 <div *ngFor="let systemConfig of systemConfigs">		  		
+		  	 {{systemConfig.key_name}} = {{systemConfig.prod_value}}
+		</div>
+  	</div>
+  </div>
 
 </div>
