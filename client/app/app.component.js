@@ -10,11 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-// import { UserService } from './services/user.service';
 var system_service_1 = require('./services/system.service');
 var systemConfig_service_1 = require('./services/systemConfig.service');
 var systemFiles_service_1 = require('./services/systemFiles.service');
-// import { logoSrc} from '';
 require('./rxjs-extensions');
 var AppComponent = (function () {
     function AppComponent() {

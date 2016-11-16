@@ -80,11 +80,15 @@ var PropertiesTextComponent = (function () {
         this.router.navigate(link);
     };
     PropertiesTextComponent.prototype.updateToSave = function (res) {
+        if (res === "" || res === null || res === undefined) {
+            alert('初始化内容不能为空');
+            return;
+        }
         var edge = res.split('\u000A');
         var comment = "";
         for (var i = 0; i < edge.length; i++) {
             var column = edge[i];
-            if (column.startsWith('//')) {
+            if (column.startsWith('//') || column.startsWith('#')) {
                 comment = column.substr(2);
             }
             else {

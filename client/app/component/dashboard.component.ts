@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTER_DIRECTIVES } from '@angular/router';
-import {Positioning} from 'angular2-bootstrap-confirm/position';
 
 import { System } from '../entity/system';
 import { SystemService } from '../services/system.service';

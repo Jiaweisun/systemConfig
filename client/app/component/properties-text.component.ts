@@ -78,12 +78,16 @@ export class PropertiesTextComponent implements OnInit, OnDestroy {
   }
 
    updateToSave(res: string) {
+      if(res === ""||res === null|| res === undefined) {
+        alert('初始化内容不能为空');
+       return
+     }
         let edge:string [] = res.split('\u000A'); 
         let comment: string = "";
 
         for(let i=0; i<edge.length; i++){
           let column:string  = edge[i];
-          if(column.startsWith('//')) {
+          if(column.startsWith('//') || column.startsWith('#')) {
              comment = column.substr(2);
           }else {
             let c:string[] = column.split('=');
@@ -91,12 +95,7 @@ export class PropertiesTextComponent implements OnInit, OnDestroy {
                continue;
             }else {
                this.systemConfig = new SystemConfig(this.system.id,comment,c[0],c[1],c[1],c[1],1);
-               this.systemConfigs.push(this.systemConfig);
-               // if (comment == '') {
-               //   console.log('key: '+c[0]  +' , value: '+c[1]);
-               // }else {
-               //    console.log('key: '+c[0]  +' , value: '+c[1]+'comment: '+comment );  
-               // }               
+               this.systemConfigs.push(this.systemConfig);            
             }           
          }          
         }
