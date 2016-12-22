@@ -9,9 +9,9 @@ let Routers = require('./lib/routers/routes.js')
 const server = new Hapi.Server();
 server.connection({ port: 3200});
 
-server.route(Routers.routers );
 
-const options = {
+
+const swaggerOptions = {
 	info: {
 		'title' : 'Test api Documentation',
 		'version': '1.0',
@@ -22,32 +22,40 @@ const options = {
 	}
 };
 
+const goodOptions = {
+	ops:{
+		interval:1000
+	},
+	reporters:{
+		console:[{
+			module:'good-squeeze',
+			name:'Squeeze',
+			args:[{
+				response:'*',
+				log:'*'
+			}]
+		},{
+			module:'good-console'
+		}, 'stdout']}
+};
+
 server.register([
 		Inert,
 		Vision,
 		{
 			'register': HapiSwagger,
-			'options': options
+			'options': swaggerOptions
 		},
 		{
-			register:Good,
-			options:{
-				reporters:{
-					console:[{
-						module:'good-squeeze',
-						name:'Squeeze',
-						args:[{
-							response:'*',
-							log:'*'
-						}]
-					},{
-						module:'good-console'
-					}, 'stdout']}
-				}
+			register: Good,
+			options: goodOptions
 }],(err)=>{
 	if(err){throw err;}	
 	server.start((err) => {
     	if (err) {throw err;}
-    	console.log('info','Server running at:', server.info.uri);
+    	console.log('【info】','Server running at:', server.info.uri);
 	});
 });
+
+
+server.route(Routers.routers );

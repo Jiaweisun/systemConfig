@@ -8,6 +8,8 @@ Lead Maintainer: [Eran Hammer](https://github.com/hueniverse)
 
 **hapi** is sponsored by [Sideway](https://sideway.com).
 
+hapijs 是一个简单的配置中心架构，它内嵌表单验证，缓存，授权和其他构建web应用和服务的基础功能。适用于大型项目。
+
 **hapi** is a simple to use configuration-centric framework with built-in support for input validation, caching,
 authentication, and other essential facilities for building web and services applications. **hapi** enables
 developers to focus on writing reusable application logic in a highly modular and prescriptive approach. 

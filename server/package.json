@@ -15,6 +15,7 @@
     "inert": "^4.0.0",
     "joi": "^8.1.1",
     "lout": "^9.0.0",
+    "mysql": "github:felixge/node-mysql",
     "node-gyp": "^3.4.0",
     "vision": "^4.1.0"
   },

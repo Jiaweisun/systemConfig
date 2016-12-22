@@ -26,7 +26,7 @@ module.exports = {
 
 	getFilesBySysName: function(req, res) {
 
-		const sql = "SELECT id, type,  name, content from system_file where id in (select file_id from system_cfg where system_id = (select id from system where name ='"+req.payload.system+"'))";	;
+		const sql = "SELECT id, type,  name, content from system_file where id in (select file_id from system_file where system_id = (select id from system where name ='"+req.payload.system+"'))";	;
 	
 		connect.query(sql,  function(err,rows) {
 	 		if (err) { throw err;}
@@ -68,7 +68,7 @@ module.exports = {
 		});
 
 		if (post.type == "propertites") {
-			const config_sql = "INSERT into system_cfg (system_id,file_id) VALUES("+req.payload.system_id+",(select id from system_file where name = '"+post.name+"'));";
+			const config_sql = "INSERT into system_file (system_id,file_id) VALUES("+req.payload.system_id+",(select id from system_file where name = '"+post.name+"'));";
 			connect.query(config_sql, function(err, rows) {
 	 		if (err) { throw err;}
 	  		res("add file config success");

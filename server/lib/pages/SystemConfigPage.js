@@ -19,7 +19,7 @@ exports.findById = {
     cors:true, 
     validate: {
         params: {
-            id: Joi.number().integer()
+            id: Joi.number().integer().description('config id'),
         }
     },
     handler: function(request,reply) {

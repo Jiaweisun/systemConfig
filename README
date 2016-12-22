@@ -11,5 +11,5 @@ node index
 
 cd client
 npm install
-npm run pro
+npm run start
 

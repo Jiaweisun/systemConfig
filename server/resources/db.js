@@ -7,7 +7,7 @@ module.exports = mysql.createConnection({
   port : '3306',
   user : 'root',
   password : '',
-  database : 'systemconfig'
+  database : 'configcenter'
 
   // host : '192.168.1.231',
   // port : '3306',
