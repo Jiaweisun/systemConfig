@@ -27,7 +27,7 @@ const goodOptions = {
 		interval:1000
 	},
 	reporters:{
-		console:[{
+		consoleReporter:[{
 			module:'good-squeeze',
 			name:'Squeeze',
 			args:[{
@@ -36,7 +36,33 @@ const goodOptions = {
 			}]
 		},{
 			module:'good-console'
-		}, 'stdout']}
+		}, 'stdout'],
+
+		fileReporter:[{
+			module:'good-squeeze',
+			name:'Squeeze',
+			args:[{	ops:'*'}]
+		},{
+			module:'good-squeeze',
+			name:'SafeJson'
+		},{
+			module:'good-file',
+			args:['./test/logFiles/configcenter_log']
+		}],
+
+		httpReporter:[{
+			module:'good-squeeze',
+			name:'Squeeze',
+			args:[{ error:'*'}]
+		},{
+			module:'good-http',
+			args:['http://SJW:3200',{
+				wreck:{
+					header:{'x-api-key':12345}
+				}
+			}]
+		}],
+	}
 };
 
 server.register([
