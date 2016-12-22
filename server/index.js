@@ -4,6 +4,14 @@ const Inert=require('inert');// for directing to static page
 const HapiSwagger = require('hapi-swagger');
 const Vision = require('vision');
 
+/**
+Authentication ( pending )
+**/
+const Basic = require('hapi-auth-basic');
+
+/**
+**/
+
 let Routers = require('./lib/routers/routes.js')
 
 const server = new Hapi.Server();
@@ -68,6 +76,7 @@ const goodOptions = {
 server.register([
 		Inert,
 		Vision,
+		Basic,
 		{
 			'register': HapiSwagger,
 			'options': swaggerOptions
@@ -76,7 +85,6 @@ server.register([
 			register: Good,
 			options: goodOptions
 }],(err)=>{
-	if(err){throw err;}	
 	server.start((err) => {
     	if (err) {throw err;}
     	console.log('【info】','Server running at:', server.info.uri);
