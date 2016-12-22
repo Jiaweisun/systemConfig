@@ -70,5 +70,16 @@ module.exports = {
 	  			cb(rows);
 		});
 		}		
-	}
+	},
+	login : function(req,res) {
+		const sql = "select * from system_user where ?";
+		const post = {
+			login_name: req.payload.login_name,
+			password: req.payload.password,
+		};
+		connect.query(sql,post, function(err, rows) {
+	 		if (err) { throw err;}
+	  		res(rows);
+		});
+	},
 }

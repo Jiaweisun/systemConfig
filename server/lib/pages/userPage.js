@@ -92,3 +92,19 @@ exports.updateUser = {
             api.update(request,reply);
         }
 }
+
+exports.login = {
+    description:'user login',
+    notes:'user login ',
+    tags:['api'],
+    cors:true,
+     validate: {
+        payload: {            
+            login_name: Joi.string().trim().min(3).max(90).description('登陆名'),
+            password: Joi.string().trim().min(3).max(90).description('密码')
+        }
+    },
+    handler: function(request, reply) {
+        api.login(request,reply);
+    }
+}

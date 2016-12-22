@@ -2,6 +2,7 @@ let SystemPage = require('../pages/SystemPage.js')
 let SystemConfigPage = require('../pages/SystemConfigPage.js')
 let ThirdPage = require('../pages/thirdPage.js')
 let SystemFilesPage = require('../pages/SystemFilesPage.js')
+let UserPage = require('../pages/userPage.js')
 
 exports.routers =  [
 	{ method: 'GET',  path: '/system/list',  config: SystemPage.list },
@@ -39,6 +40,8 @@ exports.routers =  [
 
 	{ method: 'POST', path: '/v1/api/properties',	config: ThirdPage.findByPs},
 	{ method: 'POST', path: '/v1/api/files',	config: ThirdPage.findFilesByPs},
+
+	{method:'POST',path:'/login',config:UserPage.login}
 	
  ];
 

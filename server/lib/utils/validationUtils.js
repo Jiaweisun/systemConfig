@@ -1,6 +1,9 @@
 //const Bcrypt = require('bcrypt');
 
 module.exports = {
+	/**
+	*callback(err, isValid, credentials)
+	**/
 	validate : function (request, username, password, callback) {
     const user = users[username];
     if (!user) {

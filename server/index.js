@@ -3,6 +3,7 @@ const Good =require('good');//for log
 const Inert=require('inert');// for directing to static page
 const HapiSwagger = require('hapi-swagger');
 const Vision = require('vision');
+const HapiRouter = require('hapi-router');
 
 /**
 Authentication ( pending )
@@ -11,13 +12,18 @@ const Basic = require('hapi-auth-basic');
 
 /**
 **/
-
-let Routers = require('./lib/routers/routes.js')
-
 const server = new Hapi.Server();
 server.connection({ port: 3200});
 
 
+//1. loading router by a trandition way.
+let Routers = require('./lib/routers/routes.js')
+server.route(Routers.routers );
+
+
+/**
+* options setting
+*/
 
 const swaggerOptions = {
 	info: {
@@ -55,7 +61,7 @@ const goodOptions = {
 			name:'SafeJson'
 		},{
 			module:'good-file',
-			args:['./test/logFiles/configcenter_log']
+			args:['./logs/configcenter_log']
 		}],
 
 		httpReporter:[{
@@ -73,18 +79,30 @@ const goodOptions = {
 	}
 };
 
+/**
+* 2. router options setting.
+*/
+const routerOptions = {
+	routes: '/lib/routers/*.js'// uses glob to include files
+};
+
+
+// plugin register and start.
 server.register([
-		Inert,
-		Vision,
-		Basic,
-		{
-			'register': HapiSwagger,
-			'options': swaggerOptions
-		},
-		{
-			register: Good,
-			options: goodOptions
-}],(err)=>{
+	Inert,
+	Vision,
+	Basic,
+	{
+		'register': HapiSwagger,
+		'options': swaggerOptions
+	},{
+		register: Good,
+		options: goodOptions
+	},{
+		register: HapiRouter,
+		options: routerOptions
+	}
+],(err)=>{
 	server.start((err) => {
     	if (err) {throw err;}
     	console.log('【info】','Server running at:', server.info.uri);
@@ -92,4 +110,3 @@ server.register([
 });
 
 
-server.route(Routers.routers );

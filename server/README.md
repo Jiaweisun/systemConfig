@@ -1,21 +1,19 @@
-<img src="https://raw.github.com/hapijs/hapi/master/images/hapi.png" />
-
-### Web and services application framework
-
-<a href="https://sideway.com"><img src="http://blog.sideway.com/wp-content/uploads/logo-300x114.png" align="right" /></a>
-
-Lead Maintainer: [Eran Hammer](https://github.com/hueniverse)
-
-**hapi** is sponsored by [Sideway](https://sideway.com).
 
 hapijs 是一个简单的配置中心架构，它内嵌表单验证，缓存，授权和其他构建web应用和服务的基础功能。适用于大型项目。
 
-**hapi** is a simple to use configuration-centric framework with built-in support for input validation, caching,
-authentication, and other essential facilities for building web and services applications. **hapi** enables
-developers to focus on writing reusable application logic in a highly modular and prescriptive approach. 
+#### packages:
 
-Development version: **13.4.x** ([release notes](https://github.com/hapijs/hapi/issues?labels=release+notes&page=1&state=closed)) 
-[![Build Status](https://secure.travis-ci.org/hapijs/hapi.svg)](http://travis-ci.org/hapijs/hapi)
+the server has lib, logs, node_modules, and resources folder.
+the core in server is lib folder which has dao, entity, pages, routers, and utils folder. Both logs and node_modules folder are auto generated at run time.
+there is a connection information for database in resources folder.
 
-For the latest updates, [change log](http://hapijs.com/updates), and release information visit [hapijs.com](http://hapijs.com) and follow [@hapijs](https://twitter.com/hapijs) on twitter. If you have questions, please open an issue in the
-[discussion forum](https://github.com/hapijs/discuss).
+
+notice:
+
+##### 1. bell (third-party authentication plugin for hapi)
+bell can't be used alone as a login system except for single-page applications that require loading a single source.
+once the handler is called, the application must set its own session management.
+A common solution is to combine bell with the hapi-auth-cookie authentication scheme plugin.
+
+#### 2. 
+
