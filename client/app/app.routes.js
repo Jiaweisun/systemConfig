@@ -1,5 +1,5 @@
 "use strict";
-var router_1 = require('@angular/router');
+var ngRouter = require('@angular/router');
 var dashboard_component_1 = require('./component/dashboard.component');
 var system_adding_component_1 = require('./component/system-adding.component');
 var system_config_component_1 = require('./component/system-config.component');
@@ -8,6 +8,7 @@ var system_config_xml_component_1 = require('./component/system-config-xml.compo
 var system_files_adding_component_1 = require('./component/system-files-adding.component');
 var properties_component_1 = require('./component/properties.component');
 var properties_text_component_1 = require('./component/properties-text.component');
+
 var routes = [
     {
         path: '',
@@ -47,6 +48,7 @@ var routes = [
         component: properties_text_component_1.PropertiesTextComponent
     }
 ];
+
 exports.appRouterProviders = [
-    router_1.provideRouter(routes)
+    ngRouter.provideRouter(routes)
 ];
